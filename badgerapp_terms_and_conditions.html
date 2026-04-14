@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms &amp; Conditions – Badger Liquor Company</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red:        #C8102E;
+    --red-dark:   #9B0C23;
+    --red-light:  #F5D0D6;
+    --red-mist:   #FDF3F4;
+    --gray-dark:  #3A3A3C;
+    --gray:       #58595B;
+    --gray-mid:   #D1D2D3;
+    --gray-light: #F4F4F4;
+    --white:      #FFFFFF;
+    --border:     #E0E0E1;
+    --text:       #3A3A3C;
+    --muted:      #58595B;
+    --dim:        #909092;
+  }
+  body { font-family: 'IBM Plex Sans', sans-serif; background: var(--gray-light); color: var(--text); line-height: 1.7; }
+
+  header { background: var(--white); border-bottom: 3px solid var(--red); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .header-brand { display: flex; align-items: center; gap: 14px; }
+  .header-brand img { height: 38px; width: auto; }
+  .header-divider { width: 1px; height: 28px; background: var(--gray-mid); margin: 0 4px; }
+  .header-subtitle { font-size: 12px; color: var(--gray); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
+  .header-badge { background: var(--red-mist); border: 1px solid var(--red-light); border-radius: 4px; padding: 4px 10px; font-size: 11px; font-weight: 500; color: var(--red); letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .hero { background: var(--gray-dark); border-bottom: 4px solid var(--red); padding: 48px; }
+  .hero-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
+  .hero-title { font-family: 'IBM Plex Serif', serif; font-size: 38px; font-weight: 600; color: white; line-height: 1.15; margin-bottom: 14px; }
+  .hero-meta { font-size: 13px; color: rgba(255,255,255,0.65); }
+  .hero-meta strong { color: white; }
+
+  .content-wrap { max-width: 840px; margin: 0 auto; padding: 52px 48px 80px; }
+
+  .toc { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--gray-dark); border-radius: 0 8px 8px 0; padding: 22px 26px; margin-bottom: 48px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .toc-title { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
+  .toc ol { padding-left: 18px; columns: 2; gap: 24px; }
+  .toc li { font-size: 13px; margin-bottom: 6px; break-inside: avoid; }
+  .toc a { color: var(--red); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  section { margin-bottom: 44px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--red-light); }
+  .section-num { width: 28px; height: 28px; background: var(--gray-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: white; flex-shrink: 0; }
+  h2 { font-family: 'IBM Plex Serif', serif; font-size: 20px; font-weight: 600; color: var(--text); }
+  p { font-size: 14.5px; color: var(--text); margin-bottom: 12px; line-height: 1.75; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { font-size: 14.5px; color: var(--text); margin-bottom: 7px; line-height: 1.65; }
+  strong { font-weight: 500; }
+
+  .highlight-box { background: var(--red-mist); border: 1px solid var(--red-light); border-left: 4px solid var(--red); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 16px 0; font-size: 13.5px; color: var(--text); line-height: 1.65; }
+
+  .sms-summary { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 20px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .sms-summary-header { background: var(--red); padding: 12px 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: white; }
+  .sms-row { display: flex; gap: 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+  .sms-row:last-child { border-bottom: none; }
+  .sms-key { width: 200px; flex-shrink: 0; color: var(--muted); font-weight: 500; padding: 10px 20px; background: var(--gray-light); border-right: 1px solid var(--border); }
+  .sms-val { color: var(--text); padding: 10px 20px; }
+
+  .info-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 16px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .info-row { display: flex; gap: 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+  .info-row:last-child { border-bottom: none; }
+  .info-key { width: 160px; flex-shrink: 0; color: var(--muted); font-weight: 500; padding: 10px 20px; background: var(--gray-light); border-right: 1px solid var(--border); }
+  .info-val { color: var(--text); padding: 10px 20px; }
+
+  footer { background: var(--gray-dark); border-top: 3px solid var(--red); padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; }
+  footer img { height: 22px; width: auto; filter: brightness(0) invert(1); opacity: 0.8; }
+  footer span { font-size: 11px; color: #aaa; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-brand">
+    <img src="https://media.badgerliquor.com/badgerliquor_cmyk.png" alt="Badger Liquor">
+    <div class="header-divider"></div>
+    <span class="header-subtitle">BadgerApp Platform</span>
+  </div>
+  <div class="header-badge">Legal Document</div>
+</header>
+
+<div class="hero">
+  <div class="hero-label">Badger Liquor Company</div>
+  <h1 class="hero-title">Terms &amp; Conditions</h1>
+  <div class="hero-meta">Effective Date: <strong>April 13, 2026</strong> &nbsp;·&nbsp; Last Updated: <strong>April 13, 2026</strong> &nbsp;·&nbsp; Fond du Lac, Wisconsin</div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="toc">
+    <div class="toc-title">Table of Contents</div>
+    <ol>
+      <li><a href="#acceptance">Acceptance of Terms</a></li>
+      <li><a href="#sms-program">SMS Notification Program</a></li>
+      <li><a href="#eligibility">Eligibility</a></li>
+      <li><a href="#optin-optout">Opt-In &amp; Opt-Out</a></li>
+      <li><a href="#content">Message Content</a></li>
+      <li><a href="#costs">Costs &amp; Carriers</a></li>
+      <li><a href="#use-of-app">Use of BadgerApp</a></li>
+      <li><a href="#liability">Limitation of Liability</a></li>
+      <li><a href="#changes">Changes to Terms</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <section id="acceptance">
+    <div class="section-header"><div class="section-num">1</div><h2>Acceptance of Terms</h2></div>
+    <p>By accessing BadgerApp or enrolling in SMS notifications, you agree to be bound by these Terms &amp; Conditions and our Privacy Policy. If you do not agree, you must not use the SMS notification feature.</p>
+    <p>These Terms govern your use of the Badger Liquor Company SMS notification service delivered through BadgerApp, an internal field sales platform operated by Badger Liquor Company, Fond du Lac, Wisconsin.</p>
+  </section>
+
+  <section id="sms-program">
+    <div class="section-header"><div class="section-num">2</div><h2>SMS Notification Program</h2></div>
+    <p>Badger Liquor Company provides an SMS notification service to authorized employees and field sales representatives through BadgerApp. Messages are sent from a dedicated toll-free number registered with Microsoft Azure Communication Services.</p>
+    <div class="sms-summary">
+      <div class="sms-summary-header">Program Summary</div>
+      <div class="sms-row"><span class="sms-key">Program Name</span><span class="sms-val">BadgerApp SMS Notifications</span></div>
+      <div class="sms-row"><span class="sms-key">Sender</span><span class="sms-val">Badger Liquor Company (toll-free number)</span></div>
+      <div class="sms-row"><span class="sms-key">Message Type</span><span class="sms-val">Transactional / Operational</span></div>
+      <div class="sms-row"><span class="sms-key">Frequency</span><span class="sms-val">Varies; typically 1–10 messages per business day</span></div>
+      <div class="sms-row"><span class="sms-key">Opt-In Method</span><span class="sms-val">In-app consent or keyword SMS reply (START, JOIN, BADGER)</span></div>
+      <div class="sms-row"><span class="sms-key">Opt-Out</span><span class="sms-val">Reply STOP or disable in BadgerApp settings</span></div>
+      <div class="sms-row"><span class="sms-key">Help</span><span class="sms-val">Reply HELP or email it@badgerliquor.com</span></div>
+      <div class="sms-row"><span class="sms-key">Cost</span><span class="sms-val">No charge from Badger Liquor; carrier rates may apply</span></div>
+    </div>
+  </section>
+
+  <section id="eligibility">
+    <div class="section-header"><div class="section-num">3</div><h2>Eligibility</h2></div>
+    <p>The SMS notification service is available exclusively to:</p>
+    <ul>
+      <li>Active Badger Liquor Company employees with a valid BadgerApp account.</li>
+      <li>Authorized field sales representatives assigned within BadgerApp.</li>
+      <li>Individuals with a U.S. mobile phone number capable of receiving SMS messages.</li>
+    </ul>
+    <p>This service is not available to the general public and is not used for consumer marketing or promotional purposes.</p>
+  </section>
+
+  <section id="optin-optout">
+    <div class="section-header"><div class="section-num">4</div><h2>Opt-In &amp; Opt-Out</h2></div>
+    <p><strong>To Opt In:</strong> Navigate to Notification Preferences in your BadgerApp profile settings. Enter your mobile number, review the consent disclosure, and confirm your opt-in. Alternatively, text <strong>START</strong>, <strong>JOIN</strong>, or <strong>BADGER</strong> to the program toll-free number.</p>
+    <p><strong>To Opt Out:</strong> Reply <strong>STOP</strong> to any SMS message at any time. You will receive one final confirmation message. No further messages will be sent unless you re-enroll. You may also disable SMS in your BadgerApp Notification Settings.</p>
+    <p><strong>Help:</strong> Reply <strong>HELP</strong> to any message to receive assistance information, or contact IT support directly.</p>
+    <div class="highlight-box">Opting out of SMS notifications does not affect your BadgerApp account or employment status. All operational information remains accessible within the application.</div>
+  </section>
+
+  <section id="content">
+    <div class="section-header"><div class="section-num">5</div><h2>Message Content</h2></div>
+    <p>Messages sent through this program are limited to operational and transactional content, including:</p>
+    <ul>
+      <li>Order status updates and confirmation notices.</li>
+      <li>Delivery and route status notifications.</li>
+      <li>Customer credit hold and auto-release alerts.</li>
+      <li>Deal progress and pricing notifications.</li>
+      <li>System alerts and maintenance notices relevant to field operations.</li>
+    </ul>
+    <p>This program is not used for advertising, marketing promotions, or solicitations of any kind.</p>
+  </section>
+
+  <section id="costs">
+    <div class="section-header"><div class="section-num">6</div><h2>Costs &amp; Carriers</h2></div>
+    <p>Badger Liquor Company does not charge for SMS messages. However, standard message and data rates may be assessed by your mobile carrier. Contact your carrier for plan details.</p>
+    <p>Badger Liquor Company is not responsible for charges imposed by your carrier. Mobile carriers are not liable for delayed or undelivered messages.</p>
+    <p>Supported carriers include all major U.S. carriers including AT&amp;T, Verizon, T-Mobile, US Cellular, and regional carriers. Availability may vary.</p>
+  </section>
+
+  <section id="use-of-app">
+    <div class="section-header"><div class="section-num">7</div><h2>Use of BadgerApp</h2></div>
+    <p>BadgerApp is an internal proprietary business application. Use is restricted to authorized personnel for legitimate business purposes only. Users must not share credentials, attempt unauthorized access, or use the application in any manner that violates Badger Liquor Company's acceptable use policies.</p>
+    <p>All activity within BadgerApp may be logged and monitored in accordance with company policy.</p>
+  </section>
+
+  <section id="liability">
+    <div class="section-header"><div class="section-num">8</div><h2>Limitation of Liability</h2></div>
+    <p>To the maximum extent permitted by law, Badger Liquor Company shall not be liable for any damages arising from delays, failures, or errors in SMS delivery caused by carrier network issues, device incompatibility, or factors outside our reasonable control.</p>
+    <p>The SMS notification service is provided "as is" as a convenience feature and should not be relied upon as the sole source of critical operational information.</p>
+  </section>
+
+  <section id="changes">
+    <div class="section-header"><div class="section-num">9</div><h2>Changes to Terms</h2></div>
+    <p>Badger Liquor Company reserves the right to modify these Terms &amp; Conditions at any time. Material changes will be communicated via BadgerApp notification or email. Continued use of the SMS service after changes are posted constitutes acceptance of the updated terms.</p>
+  </section>
+
+  <section id="contact">
+    <div class="section-header"><div class="section-num">10</div><h2>Contact</h2></div>
+    <p>For questions about these Terms &amp; Conditions or the SMS notification program:</p>
+    <div class="info-card">
+      <div class="info-row"><span class="info-key">Organization</span><span class="info-val">Badger Liquor Company — IT Department</span></div>
+      <div class="info-row"><span class="info-key">Email</span><span class="info-val">it@badgerliquor.com</span></div>
+      <div class="info-row"><span class="info-key">Location</span><span class="info-val">Fond du Lac, Wisconsin</span></div>
+      <div class="info-row"><span class="info-key">Phone</span><span class="info-val">Available through your internal directory</span></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <img src="https://media.badgerliquor.com/badgerliquor_cmyk.png" alt="Badger Liquor">
+  <span>CONFIDENTIAL — PROPERTY OF BADGER LIQUOR COMPANY</span>
+  <span>© 2026 All rights reserved.</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BadgerApp – SMS Opt-In</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red:        #C8102E;
+    --red-dark:   #9B0C23;
+    --red-light:  #F5D0D6;
+    --red-mist:   #FDF3F4;
+    --gray-dark:  #3A3A3C;
+    --gray:       #58595B;
+    --gray-mid:   #D1D2D3;
+    --gray-light: #F4F4F4;
+    --white:      #FFFFFF;
+    --border:     #E0E0E1;
+    --text:       #3A3A3C;
+    --muted:      #58595B;
+    --dim:        #909092;
+    --green:      #1E7E34;
+    --green-soft: #EAF5EC;
+  }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--gray-light);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--white);
+    border-bottom: 3px solid var(--red);
+    padding: 0 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+  header img { height: 34px; width: auto; }
+  .header-right {
+    font-size: 12px;
+    color: var(--dim);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ── Page body ── */
+  .page {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 48px 24px 64px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .page-heading {
+    margin-bottom: 28px;
+  }
+  .page-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .page-subtitle {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-top: 5px;
+    line-height: 1.5;
+  }
+
+  /* ── Card ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  /* ── Field rows ── */
+  .field {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .field:last-child { border-bottom: none; }
+
+  .field-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+
+  /* Toggle */
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .toggle-text { }
+  .toggle-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .toggle-desc { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+
+  .toggle { position: relative; width: 46px; height: 26px; flex-shrink: 0; }
+  .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .toggle-track { position: absolute; inset: 0; background: var(--gray-mid); border-radius: 13px; cursor: pointer; transition: background 0.2s; }
+  .toggle input:checked + .toggle-track { background: var(--red); }
+  .toggle-track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+  .toggle input:checked + .toggle-track::after { transform: translateX(20px); }
+
+  /* Phone input */
+  .input-prefix {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .input-prefix:focus-within {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px var(--red-light);
+  }
+  .prefix-label {
+    padding: 10px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    border-right: 1px solid var(--border);
+    background: var(--gray-light);
+    white-space: nowrap;
+  }
+  .input-prefix input {
+    background: transparent; border: none; outline: none;
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    padding: 10px 14px; width: 100%;
+    letter-spacing: 0.05em;
+  }
+  .input-prefix input::placeholder { color: var(--dim); letter-spacing: 0; font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; }
+  .field-note { font-size: 11.5px; color: var(--dim); margin-top: 7px; }
+
+  /* Keywords */
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+  .keyword-chip {
+    display: inline-flex; align-items: center;
+    background: var(--red-mist);
+    border: 1px solid var(--red-light);
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 12.5px; font-weight: 500;
+    color: var(--red);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .keyword-note { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
+  /* Consent */
+  .consent-box {
+    background: var(--gray-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .consent-row { display: flex; align-items: flex-start; gap: 12px; }
+  .check-icon {
+    width: 20px; height: 20px;
+    background: var(--red);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .check-icon svg { width: 12px; height: 12px; }
+  .consent-text { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .consent-text strong { color: var(--text); font-weight: 500; }
+  .consent-link { color: var(--red); text-decoration: underline; }
+  .consent-stamp {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--dim);
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.6;
+  }
+
+  /* Actions */
+  .actions {
+    padding: 20px 28px;
+    background: var(--gray-light);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .actions-note {
+    font-size: 11.5px;
+    color: var(--dim);
+  }
+  .actions-btns { display: flex; gap: 10px; }
+  .btn-primary {
+    background: var(--red); color: white; border: none;
+    border-radius: 6px; padding: 10px 28px;
+    font-size: 13.5px; font-weight: 500;
+    font-family: 'IBM Plex Sans', sans-serif;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--red-dark); }
+  .btn-ghost {
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 10px 18px; font-size: 13.5px;
+    font-family: 'IBM Plex Sans', sans-serif; cursor: pointer;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--gray-dark);
+    border-top: 3px solid var(--red);
+    padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  footer img { height: 20px; filter: brightness(0) invert(1); opacity: 0.75; }
+  footer span { font-size: 11px; color: #999; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="https://media.badgerliquor.com/badgerliquor_cmyk.png" alt="Badger Liquor">
+  <div class="header-right">BadgerApp &nbsp;·&nbsp; SMS Enrollment</div>
+</header>
+
+<div class="page">
+  <div class="container">
+
+    <div class="page-heading">
+      <div class="page-label">Notification Settings</div>
+      <h1 class="page-title">SMS Opt-In</h1>
+      <p class="page-subtitle">Enroll your mobile number to receive operational alerts from BadgerApp via text message.</p>
+    </div>
+
+    <div class="card">
+
+      <!-- Enable toggle -->
+      <div class="field">
+        <div class="field-label">Enable SMS Notifications</div>
+        <div class="toggle-row">
+          <div class="toggle-text">
+            <div class="toggle-name">Receive text message alerts</div>
+            <div class="toggle-desc">Order updates, credit holds, delivery status, and route notifications</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <div class="toggle-track"></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Mobile number -->
+      <div class="field">
+        <div class="field-label">Mobile Number</div>
+        <div class="input-prefix">
+          <span class="prefix-label">+1</span>
+          <input type="tel" value="920-555-0147" placeholder="(920) 555-0000">
+        </div>
+        <div class="field-note">U.S. mobile numbers only. Standard messaging rates may apply.</div>
+      </div>
+
+      <!-- Keywords -->
+      <div class="field">
+        <div class="field-label">Opt-In Keywords</div>
+        <div class="keywords">
+          <span class="keyword-chip">START</span>
+          <span class="keyword-chip">JOIN</span>
+          <span class="keyword-chip">BADGER</span>
+        </div>
+        <div class="keyword-note">Text any keyword above to our toll-free number to subscribe. Reply <strong>STOP</strong> to unsubscribe at any time. Reply <strong>HELP</strong> for assistance. Message frequency varies — typically 1–10 messages per business day.</div>
+      </div>
+
+      <!-- Consent -->
+      <div class="field">
+        <div class="field-label">Consent &amp; Disclosure</div>
+        <div class="consent-box">
+          <div class="consent-row">
+            <div class="check-icon">
+              <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="consent-text">
+              I agree to receive recurring SMS notifications from <strong>Badger Liquor Company</strong> regarding order status, delivery updates, customer credit alerts, and operational notifications. Message frequency varies. Message &amp; data rates may apply. Reply <strong>STOP</strong> to unsubscribe at any time. View our <a class="consent-link" href="privacy-policy.html">Privacy Policy</a> and <a class="consent-link" href="terms-and-conditions.html">Terms &amp; Conditions</a>.
+            </div>
+          </div>
+          <div class="consent-stamp">
+            ✅ Consent recorded &nbsp;·&nbsp; 04/13/2026 08:42 AM CDT &nbsp;·&nbsp; User ID #1042 &nbsp;·&nbsp; BadgerApp v2.1
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <span class="actions-note">Changes take effect immediately upon saving.</span>
+        <div class="actions-btns">
+          <button class="btn-ghost">Cancel</button>
+          <button class="btn-primary">Save &amp; Enroll</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <img src="https://media.badgerliquor.com/badgerliquor_cmyk.png" alt="Badger Liquor">
+  <span>CONFIDENTIAL — PROPERTY OF BADGER LIQUOR COMPANY &nbsp;·&nbsp; © 2026</span>
+</footer>
+
+</body>
+</html>
