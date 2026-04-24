@@ -191,15 +191,27 @@
     padding: 16px;
   }
   .consent-row { display: flex; align-items: flex-start; gap: 12px; }
-  .check-icon {
-    width: 20px; height: 20px;
-    background: var(--red);
-    border-radius: 4px;
+  .consent-checkbox {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 3px;
+    background: var(--white);
     flex-shrink: 0;
-    margin-top: 1px;
-    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: border-color 0.15s;
   }
-  .check-icon svg { width: 12px; height: 12px; }
+  .consent-checkbox:checked {
+    background: var(--red);
+    border-color: var(--red);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6L5 9L10 3' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 11px;
+  }
+  .consent-checkbox:focus { outline: 2px solid var(--red-light); }
   .consent-text { font-size: 13px; color: var(--muted); line-height: 1.65; }
   .consent-text strong { color: var(--text); font-weight: 500; }
   .consent-link { color: var(--red); text-decoration: underline; }
@@ -281,7 +293,7 @@
             <div class="toggle-desc">Order updates, credit holds, delivery status, and route notifications</div>
           </div>
           <label class="toggle">
-            <input type="checkbox" checked>
+            <input type="checkbox">
             <div class="toggle-track"></div>
           </label>
         </div>
@@ -313,18 +325,12 @@
         <div class="field-label">Consent &amp; Disclosure</div>
         <div class="consent-box">
           <div class="consent-row">
-            <div class="check-icon">
-              <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 6L5 9L10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+            <input type="checkbox" class="consent-checkbox">
             <div class="consent-text">
               I agree to receive recurring SMS notifications from <strong>Badger Liquor Company</strong> regarding order status, delivery updates, customer credit alerts, and operational notifications. Message frequency varies. Message &amp; data rates may apply. Reply <strong>STOP</strong> to unsubscribe at any time. View our <a class="consent-link" href="privacy-policy.html">Privacy Policy</a> and <a class="consent-link" href="terms-and-conditions.html">Terms &amp; Conditions</a>.
             </div>
           </div>
-          <div class="consent-stamp">
-            ✅ Consent recorded &nbsp;·&nbsp; 04/13/2026 08:42 AM CDT &nbsp;·&nbsp; User ID #1042 &nbsp;·&nbsp; BadgerApp v2.1
-          </div>
+
         </div>
       </div>
 
